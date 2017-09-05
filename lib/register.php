@@ -1,4 +1,4 @@
-<?php include ('template/head.php'); ?>
+<?php include ('../template/head.php'); ?>
 <body>
 
 
@@ -8,7 +8,7 @@
     <div class="card-block">
         <h4 class="card-title">Zarejestruj się</h4>
         <form method="post" action="register.php">
-            <?php include ('lib/error.php')?>
+            <?php include('error.php') ?>
             <div class="form-group">
                 <label>Email</label>
                 <input type="email" class="form-control" name="email" placeholder="Enter email">
@@ -32,4 +32,4 @@
 
 
 
-<?php include ('template/footer.php'); ?>
+<?php include('../template/footer.php'); ?>

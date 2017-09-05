@@ -1,4 +1,4 @@
-<?php include ('template/head.php'); ?>
+<?php include('../template/head.php'); ?>
 <body>
 
 
@@ -28,4 +28,4 @@
 
 
 
-<?php include ('template/footer.php'); ?>
+<?php include('../template/head.php'); ?>
