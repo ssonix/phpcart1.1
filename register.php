@@ -7,7 +7,7 @@
 <div class="card" style="width: 20rem;">
     <div class="card-block">
         <h4 class="card-title">Zarejestruj się</h4>
-        <form method="post" action="index.php">
+        <form method="post" action="register.php">
             <?php include ('lib/error.php')?>
             <div class="form-group">
                 <label>Email</label>

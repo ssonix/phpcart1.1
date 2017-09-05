@@ -1,7 +1,8 @@
 <?php
+session_start();
 
 $email = "";
-$error = array();
+$errors = array();
 
 $db = mysqli_connect("localhost", "root", "password", "shopping_cart");
 
@@ -16,20 +17,23 @@ if (isset($_POST['register'])) {
 
     //walidacja
     if(empty($email)) {
-        array_push($error, "email jest wymagany");
+        array_push($errors, "email jest wymagany");
     }
     if(empty($password_1)) {
-        array_push($error, "haslo jest wymagane");
+        array_push($errors, "haslo jest wymagane");
     }
     if ($password_1 != $password_2) {
-        array_push($error, "hasła się nie pokrywają");
+        array_push($errors, "Hasła się nie pokrywają");
     }
     //jesli nie bedzie bledow, wprowadz dane do bazy
-    if(count($error) ==0) {
-        $password = md5($password_1); // encrypt password
+    if(count($errors) == 0) {
+       $password = md5($password_1);
         $sql = "INSERT INTO `users` (`email`, `password`) VALUES ('". mysqli_real_escape_string($db, $_POST['email']) ."',
-         '". mysqli_real_escape_string($db, $_POST['password']) ."')";
+         '". mysqli_real_escape_string($db, $_POST['password_1']) ."')";
         mysqli_query($db, $sql);
+        $_SESSION['username'] = $username;
+        $_SESSION['sucess'] = "Jestes teraz zalogowany";
+        header('location: index.php');
     }
 
 }

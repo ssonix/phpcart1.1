@@ -19,7 +19,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary" name="login">Zaloguj się</button>
                 <p>
-                    Nie jesteś zarejestrowany?<a href="index.php">Zarejestruj się</a>
+                    Nie jesteś zarejestrowany?<a href="register.php">Zarejestruj się</a>
                 </p>
             </form>
         </div>
