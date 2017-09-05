@@ -1,7 +1,16 @@
 <?php
-include ('../template/head.php');
-?>
+include('template/head.php');
 
+if(isset($_POST['add'])){
+    //select cart for current logged user
+    //session -> user_id
+    //select carts by user_id : CART -> id
+    $sql = "INSERT INTO `cart_products` (`product_id`, `quantity`, `price`)
+      VALUES(" . intval($_POST["hidden_id"]) . ", " . intval($_POST["quantity"]) . ", " . intval($_POST["hidden_price"]) . ")";
+    $result = mysqli_query($db, $sql);
+};
+var_dump($_POST)
+?>
 
 <div class="container table-bordered">
     <h1 class="header">Wybierz telefon:</h1>
@@ -14,7 +23,7 @@ include ('../template/head.php');
             while ($row = mysqli_fetch_array($result)) {
             ?>
                 <div class="col-md-4 col-sm-6">
-                    <form method="post" >
+                    <form method="post" action="lib/functions/add_to_cart.php">
                         <div>
                             <img src="../img/<?php echo $row["photo"]; ?>" class="photos">
 
@@ -37,18 +46,6 @@ include ('../template/head.php');
              ?>
     </div>
 
-    <?php
-
-    if(isset($_POST['add'])){
-        $sql = "INSERT INTO `cart_products` (`product_id`, `quantity`, `price`)
-      VALUES(" . intval($_POST["hidden_id"]) . ", " . intval($_POST["quantity"]) . ", " . intval($_POST["hidden_price"]) . ")";
-        $result = mysqli_query($db, $sql);
-    };
-    var_dump($_POST)
-
-
-    ?>
-
 
 
 
@@ -63,5 +60,5 @@ include ('../template/head.php');
 
 
 <?php
-include ('../template/footer.php');
+include('../template/footer.php');
 ?>

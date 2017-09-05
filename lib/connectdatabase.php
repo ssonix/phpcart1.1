@@ -28,21 +28,16 @@ if (isset($_POST['register'])) {
     //jesli nie bedzie bledow, wprowadz dane do bazy
     if(count($errors) == 0) {
         $password = md5($password_1);
-        $sql = "INSERT INTO `users` (`email`, `password`) VALUES ('". mysqli_real_escape_string($db, $_POST['email']) ."',
-         '". mysqli_real_escape_string($db, $_POST['password_1']) ."')";
+        $sql = "INSERT INTO `users` (`email`, `password`) VALUES ('". mysqli_real_escape_string($db, $_POST['email']) ."', '". mysqli_real_escape_string($db, $_POST['password_1']) ."')";
         mysqli_query($db, $sql);
 
         if (mysqli_query($db, $sql)) {
             $last_id = (mysqli_insert_id($db));
+            $sql = "INSERT INTO `cart`(`user_id`) VALUES ('$last_id')";
+            mysqli_query($db, $sql);
         }
-        $sql = "INSERT INTO `cart`(`user_id`) VALUES ('$last_id')";
-
 
         header('location: index.php');
-
-        $sql = "SELECT id FROM `users` WHERE email = '". mysqli_real_escape_string($db, $_POST['email']) . "' ";
-        $result = mysqli_query($db, $sql);
-
     }
 
 }

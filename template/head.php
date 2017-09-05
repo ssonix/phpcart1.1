@@ -1,4 +1,4 @@
-<?php include('../lib/connectdatabase.php'); ?>
+<?php include('lib/connectdatabase.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
