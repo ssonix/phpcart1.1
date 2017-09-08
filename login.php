@@ -1,4 +1,5 @@
-<?php include('template/head.php'); ?>
+<?php include('template/head.php');
+include ('lib/functions/loggingin.php')?>
 <body>
 
 
@@ -11,11 +12,11 @@
             <form method="post" action="login.php">
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Wprowadz email">
+                    <input type="email" class="form-control" placeholder="Wprowadz email" name="email">
                 </div>
                 <div class="form-group">
                     <label>Hasło</label>
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" name="password">
                 </div>
                 <button type="submit" class="btn btn-primary" name="login">Zaloguj się</button>
                 <p>
@@ -28,4 +29,4 @@
 
 
 
-<?php include('../template/head.php'); ?>
+<?php include('template/footer.php'); ?>

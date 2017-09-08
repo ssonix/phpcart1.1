@@ -8,10 +8,10 @@
     <div class="card-block">
         <h4 class="card-title">Zarejestruj się</h4>
         <form method="post" action="register.php">
-            <?php include('error.php') ?>
+            <?php include('lib/error.php') ?>
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Enter email">
+                <input type="email" class="form-control" name="email" placeholder="Enter email" value="<?php echo $email; ?>">
             </div>
             <div class="form-group">
                 <label>Hasło</label>
@@ -32,4 +32,4 @@
 
 
 
-<?php include('../template/footer.php'); ?>
+<?php include('template/footer.php'); ?>
