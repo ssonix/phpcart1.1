@@ -4,7 +4,9 @@ include('lib/connectdatabase.php');
 ?>
 <!--NAVBAR-->
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">Strona główna</a>
@@ -42,7 +44,52 @@ include('lib/connectdatabase.php');
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    Add rows here
+
+                    <table class="table table-inverse">
+                        <thead>
+                        <tr>
+                            <th>ID produktu</th>
+                            <th>Ilośc</th>
+                            <th>cena za szt</th>
+                            <th>nazwa</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php
+                            $query = "SELECT cart_products.product_id, cart_products.quantity, cart_products.price, products.name, cart_products.id 
+                            FROM cart_products, products WHERE product_id= products.id ORDER BY cart_products.id";
+                            $result = mysqli_query($db, $query); ?>
+                            <?php if (mysqli_num_rows($result) > 0) :?>
+                                <?php while ($row = mysqli_fetch_array($result)) : ?>
+                                    <tr>
+                                        <td><?php echo $row["product_id"] ?></td>
+                                        <td><?php echo $row["quantity"] ?></td>
+                                        <td><?php echo $row["price"] ?></td>
+                                        <td><?php echo $row["name"] ?></td>
+
+                                       <td>
+                                           <form method="post" action="lib/functions/delete_from_cart.php">
+                                               <input type="hidden" name="id" value="<?php echo $row["id"] ?>">
+
+                                               <input type="submit" name="delete" class="btn" value="X">
+                                           </form>
+                                       </td>
+                                    </tr>
+                                 <?php endwhile; ?>
+                             <?php endif; ?>
+
+                        </tbody>
+                    </table>
+                    <h5>Do zapłaty w sumie:
+                        <?php
+                        $cart_id = $_SESSION['cart_id'];
+                        $query = "SELECT sum(cart_products.quantity*cart_products.price)
+                            FROM cart_products WHERE cart_id = $cart_id";
+                        $result = mysqli_query($db, $query);
+                        $summary = mysqli_fetch_array($result);
+//                        print_r($summary);
+                        echo $summary[0]; ?> zł</h5>
                 </div>
             </div>
             <div class="modal-footer">
@@ -58,15 +105,16 @@ include('lib/connectdatabase.php');
         var button = $(event.relatedTarget);
     var modal = $(this);
     // Use above variables to manipulate the DOM
-    });
+    })
+    ;
 </script>
 
 
 <div>
     <?php
     var_dump($_SESSION['cart_id']);
-        if (isset($_SESSION['user_id'])); ?>
-    <p>Witaj<strong><?php echo $_SESSION['user_id']?></strong></p>
+    if (isset($_SESSION['user_id'])) ; ?>
+    <p>Witaj<strong><?php echo $_SESSION['user_id'] ?></strong></p>
 </div>
 
 
@@ -77,9 +125,9 @@ include('lib/connectdatabase.php');
         <?php
         $query = "SELECT * FROM `products` ORDER BY id ASC";
         $result = mysqli_query($db, $query);
-            if (mysqli_num_rows($result) > 0) {
+        if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result)) {
-            ?>
+                ?>
                 <div class="col-md-4 col-sm-6">
                     <form method="post" action="lib/functions/add_to_cart.php">
                         <div>
@@ -90,21 +138,21 @@ include('lib/connectdatabase.php');
                             <p></p>
                             <input type="submit" name="add" class="btn btn-info" value="Dodaj do koszyka">
 
-<!--                            hidden-->
+                            <!--                            hidden-->
                             <input type="hidden" name="hidden_name" value="<?php echo $row["name"] ?>">
                             <input type="hidden" name="hidden_price" value="<?php echo $row["price"] ?>">
                             <input type="hidden" name="hidden_id" value="<?php echo $row["id"] ?>">
                         </div>
                     </form>
                 </div>
-            <?php
+                <?php
             }
         }
-             ?>
+        ?>
     </div>
 </div>
 
 
-    <?php
+<?php
 include('template/footer.php');
 ?>

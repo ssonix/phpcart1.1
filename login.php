@@ -1,5 +1,5 @@
 <?php include('template/head.php');
-include ('lib/functions/loggingin.php')?>
+//include ('lib/functions/loggingin.php')?>
 <body>
 
 
@@ -9,7 +9,7 @@ include ('lib/functions/loggingin.php')?>
             <h4 class="card-title">Zaloguj się</h4>
 
 
-            <form method="post" action="login.php">
+            <form method="post" action="lib/functions/loggingin.php">
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" class="form-control" placeholder="Wprowadz email" name="email">
