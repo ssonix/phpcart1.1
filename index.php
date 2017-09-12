@@ -67,7 +67,6 @@ include('lib/connectdatabase.php');
                                         <td><?php echo $row["quantity"] ?></td>
                                         <td><?php echo $row["price"] ?></td>
                                         <td><?php echo $row["name"] ?></td>
-
                                        <td>
                                            <form method="post" action="lib/functions/delete_from_cart.php">
                                                <input type="hidden" name="id" value="<?php echo $row["id"] ?>">
@@ -94,7 +93,10 @@ include('lib/connectdatabase.php');
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+
+                    <form method="post" action="lib/functions/createorder.php">
+                        <input type="submit" class="btn btn-info" name="order">
+                     </form>
             </div>
         </div>
     </div>
@@ -151,6 +153,8 @@ include('lib/connectdatabase.php');
         ?>
     </div>
 </div>
+
+<a href="orderlist.php" class="btn btn-info" id="ordersbutton" role="button">Moje zamówienia</a>
 
 
 <?php
