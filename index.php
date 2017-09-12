@@ -120,7 +120,7 @@ include('lib/connectdatabase.php');
 </div>
 
 
-<div class="container table-bordered">
+<div class="container table-bordered" id="cart-tbl">
     <h1 class="header">Wybierz telefon:</h1>
     <p></p>
     <div class="row">

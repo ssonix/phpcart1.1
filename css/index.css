@@ -40,3 +40,31 @@ body {
     margin-top: 220px;
     margin-left: 1500px;
 }
+#cart-tbl {
+    background-color: aliceblue;
+}
+h1 {
+text-align: center }
+
+#ordertable:before {
+    background-size: cover;
+    display: block;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    height: 800px;
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1;
+
+}
+#ordertable {
+    overflow: auto;
+    position: relative;
+}
+table {
+    margin: 15px;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    box-shadow: 0 0 5px gray;
+}

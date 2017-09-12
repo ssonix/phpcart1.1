@@ -2,11 +2,7 @@
 include ('lib/connectdatabase.php');
 include ('template/head.php');
 ?>
-<?php>
 
-$query = "SELECT ";
-
-?>
     <div>
         <?php
         var_dump($_SESSION['cart_id']);
@@ -16,7 +12,7 @@ $query = "SELECT ";
 
 
 
-    <div class="container-fluid">
+    <div class="container" id="ordertable">
 <table class="table">
   <thead>
     <tr>
@@ -40,13 +36,6 @@ WHERE product_id= products.id";
               <td><?php echo $row["name"] ?></td>
               <td><?php echo $row["quantity"] ?></td>
               <td><?php echo $row["price"] ?></td>
-              <td>
-                  <form method="post" action="lib/functions/delete_from_cart.php">
-                      <input type="hidden" name="id" value="<?php echo $row["id"] ?>">
-
-                      <input type="submit" name="delete" class="btn" value="X">
-                  </form>
-              </td>
           </tr>
       <?php endwhile; ?>
   <?php endif; ?>
